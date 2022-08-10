@@ -123,7 +123,7 @@ module ONCCertificationG10TestKit
 
     if Feature.us_core_v4?
       suite_option :us_core_version,
-                   title: 'US Core Version',
+                   title: 'US Core Version (US Core 5.0.1 support soon)',
                    list_options: [
                      {
                        label: 'US Core 3.1.1 / USCDI v1',
