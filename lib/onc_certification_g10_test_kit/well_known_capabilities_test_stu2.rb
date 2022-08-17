@@ -10,7 +10,7 @@ module ONCCertificationG10TestKit
     id :g10_smart_well_known_capabilities_stu2
 
     run do
-      self.instance_eval(&SMARTAppLaunch::WellKnownCapabilitiesSTU2Test.run)
+      instance_eval(&SMARTAppLaunch::WellKnownCapabilitiesSTU2Test.run)
 
       capabilities = JSON.parse(well_known_configuration)['capabilities']
       missing_capabilities = (config.options[:required_capabilities] || []) - capabilities
