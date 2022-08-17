@@ -1,7 +1,8 @@
 require_relative 'base_token_refresh_group'
 require_relative 'smart_scopes_test'
 require_relative 'unauthorized_access_test'
-require_relative 'well_known_capabilities_test'
+require_relative 'well_known_capabilities_test_stu1'
+require_relative 'well_known_capabilities_test_stu2'
 
 module ONCCertificationG10TestKit
   class SmartEHRPractitionerAppGroup < Inferno::TestGroup
@@ -58,7 +59,7 @@ module ONCCertificationG10TestKit
     group from: :smart_discovery do
       required_suite_options(smart_app_launch_version: 'smart_app_launch_1') if Feature.smart_v2?
 
-      test from: 'g10_smart_well_known_capabilities',
+      test from: 'g10_smart_well_known_capabilities_stu1',
            config: {
              options: {
                required_capabilities: [
@@ -79,7 +80,7 @@ module ONCCertificationG10TestKit
       group from: :smart_discovery_stu2 do
         required_suite_options(smart_app_launch_version: 'smart_app_launch_2')
 
-        test from: 'g10_smart_well_known_capabilities',
+        test from: 'g10_smart_well_known_capabilities_stu2',
              config: {
                options: {
                  required_capabilities: [
@@ -90,7 +91,10 @@ module ONCCertificationG10TestKit
                    'context-style',
                    'context-ehr-patient',
                    'permission-offline',
-                   'permission-user'
+                   'permission-user',
+                   'authorize-post',
+                   'permission-v1',
+                   'permission-v2'
                  ]
                }
              }

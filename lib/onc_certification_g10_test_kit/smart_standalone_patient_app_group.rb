@@ -3,8 +3,8 @@ require_relative 'patient_context_test'
 require_relative 'smart_scopes_test'
 require_relative 'unauthorized_access_test'
 require_relative 'unrestricted_resource_type_access_group'
-require_relative 'well_known_capabilities_test'
 require_relative 'well_known_capabilities_test_stu1'
+require_relative 'well_known_capabilities_test_stu2'
 
 module ONCCertificationG10TestKit
   class SmartStandalonePatientAppGroup < Inferno::TestGroup
@@ -77,7 +77,7 @@ module ONCCertificationG10TestKit
       group from: :smart_discovery_stu2 do
         required_suite_options(smart_app_launch_version: 'smart_app_launch_2')
 
-        test from: 'g10_smart_well_known_capabilities',
+        test from: 'g10_smart_well_known_capabilities_stu2',
              config: {
                options: {
                  required_capabilities: [
@@ -87,7 +87,10 @@ module ONCCertificationG10TestKit
                    'sso-openid-connect',
                    'context-standalone-patient',
                    'permission-offline',
-                   'permission-patient'
+                   'permission-patient',
+                   'authorize-post',
+                   'permission-v1',
+                   'permission-v2'
                  ]
                }
              }

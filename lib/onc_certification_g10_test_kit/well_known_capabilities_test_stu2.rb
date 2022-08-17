@@ -1,6 +1,5 @@
 module ONCCertificationG10TestKit
-  class SMARTWellKnownCapabilitiesTest < Inferno::Test
-    title 'Well-known configuration declares support for required capabilities'
+  class SMARTWellKnownCapabilitiesTestSTU2 < SMARTAppLaunch::WellKnownCapabilitiesSTU2Test
     description %(
       A SMART on FHIR server SHALL convey its capabilities to app developers
       by listing the SMART core capabilities supported by their
@@ -8,17 +7,12 @@ module ONCCertificationG10TestKit
       ensures that the capabilities required by this scenario are properly
       documented in the Well-known file.
     )
-    id :g10_smart_well_known_capabilities
-    input :well_known_configuration
+    id :g10_smart_well_known_capabilities_stu2
 
     run do
-      skip_if well_known_configuration.blank?, 'No well-known SMART configuration found.'
+      self.instance_eval(&SMARTAppLaunch::WellKnownCapabilitiesSTU2Test.run)
 
-      assert_valid_json(well_known_configuration)
       capabilities = JSON.parse(well_known_configuration)['capabilities']
-      assert capabilities.is_a?(Array),
-             "Expected the well-known capabilities to be an Array, but found #{capabilities.class.name}"
-
       missing_capabilities = (config.options[:required_capabilities] || []) - capabilities
       assert missing_capabilities.empty?,
              "The following capabilities required for this scenario are missing: #{missing_capabilities.join(', ')}"
