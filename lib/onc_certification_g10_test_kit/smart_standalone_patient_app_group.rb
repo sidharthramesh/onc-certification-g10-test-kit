@@ -4,6 +4,7 @@ require_relative 'smart_scopes_test'
 require_relative 'unauthorized_access_test'
 require_relative 'unrestricted_resource_type_access_group'
 require_relative 'well_known_capabilities_test'
+require_relative 'well_known_capabilities_test_stu1'
 
 module ONCCertificationG10TestKit
   class SmartStandalonePatientAppGroup < Inferno::TestGroup
@@ -56,7 +57,7 @@ module ONCCertificationG10TestKit
     group from: :smart_discovery do
       required_suite_options(smart_app_launch_version: 'smart_app_launch_1') if Feature.smart_v2?
 
-      test from: 'g10_smart_well_known_capabilities',
+      test from: 'g10_smart_well_known_capabilities_stu1',
            config: {
              options: {
                required_capabilities: [
